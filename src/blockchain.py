@@ -1,5 +1,6 @@
 import hashlib
 import json
+import time
 
 class Block:
     def __init__(self, index, previous_hash, timestamp, transactions, proof):
@@ -35,12 +36,7 @@ class Blockchain:
             if current_block.previous_hash != previous_block.hash:
                 return False
         return True
-
-import time
-
-class Blockchain:
-    # ...
-
+    
     def mine_block(self, proof_prefix):
         while True:
             new_proof = self.proof_of_work()
@@ -59,7 +55,7 @@ class Blockchain:
     @staticmethod
     def is_valid_proof(proof):
         return hashlib.sha256(str(proof).encode()).hexdigest()[:4] == "0000"
-
+    
 if __name__ == '__main__':
     blockchain = Blockchain()
     proof_prefix = "0000"  # Adjust this based on the desired level of difficulty
